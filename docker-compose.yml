@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  php:
+    build: .
+    volumes:
+      - ${PROJECT_DIR}:/var/www/html
+    ports:
+      - 8080:80
+  mysql:
+    platform: linux/x86_64
+    image: mysql:5.7
+    volumes:
+      - ./mysql/lib/mysql:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/log:/var/log/mysql
+      - ./mysql/dump:/tmp/dump
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports: 
+      - 3306:3306
