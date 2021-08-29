@@ -3,8 +3,11 @@ version: '3'
 services:
   php:
     build: .
+    environment:
+      - APACHE_LOG_DIR=/var/log/httpd
     volumes:
       - ${PROJECT_DIR}:/var/www/html
+      - ./httpd_log:/var/log/httpd
     ports:
       - 8080:80
   mysql:
