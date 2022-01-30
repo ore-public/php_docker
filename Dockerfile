@@ -4,7 +4,7 @@ FROM php:7.4-apache
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 COPY ./php.ini "$PHP_INI_DIR/php.ini"
 
-ENV YARN_VERSION 1.22.5
+ENV YARN_VERSION 1.22.17
 RUN mkdir -p /opt
 COPY --from=node /opt/yarn-v$YARN_VERSION /opt/yarn
 COPY --from=node /usr/local/bin/node /usr/local/bin/
@@ -17,6 +17,6 @@ RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
   && npm install -g npm
 
 RUN apt-get update \
- && apt-get -y install libzip-dev libonig-dev \
- && docker-php-ext-install zip pdo_mysql mysqli mbstring \
+ && apt-get -y install libzip-dev libonig-dev libpng-dev \
+ && docker-php-ext-install zip pdo_mysql mysqli mbstring gd \
  && a2enmod rewrite
