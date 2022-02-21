@@ -17,6 +17,6 @@ RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
   && npm install -g npm
 
 RUN apt-get update \
- && apt-get -y install libzip-dev libonig-dev \
- && docker-php-ext-install zip pdo_mysql mysqli mbstring \
+ && apt-get -y install libzip-dev libonig-dev libpng-dev \
+ && docker-php-ext-install zip pdo_mysql mysqli mbstring gd \
  && a2enmod rewrite
