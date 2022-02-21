@@ -17,6 +17,8 @@ RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
   && npm install -g npm
 
 RUN apt-get update \
- && apt-get -y install libzip-dev libonig-dev libpng-dev \
+ && apt-get -y install libzip-dev libonig-dev libpng-dev imagemagick libmagick++-dev \
+ && pecl install imagick \
  && docker-php-ext-install zip pdo_mysql mysqli mbstring gd \
+ && docker-php-ext-enable imagick \
  && a2enmod rewrite
