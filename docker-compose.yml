@@ -12,7 +12,7 @@ services:
       - 8080:80
   mysql:
     platform: linux/x86_64
-    image: mysql:5.7
+    image: mysql:8.0
     volumes:
       - ./mysql/lib/mysql:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
