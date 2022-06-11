@@ -1,10 +1,10 @@
-FROM node:14 as node
-FROM php:7.4-apache
+FROM node:16 as node
+FROM php:8.0-apache
 
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 COPY ./php.ini "$PHP_INI_DIR/php.ini"
 
-ENV YARN_VERSION 1.22.17
+ENV YARN_VERSION 1.22.19
 RUN mkdir -p /opt
 COPY --from=node /opt/yarn-v$YARN_VERSION /opt/yarn
 COPY --from=node /usr/local/bin/node /usr/local/bin/
