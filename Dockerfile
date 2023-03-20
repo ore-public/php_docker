@@ -21,4 +21,5 @@ RUN apt-get update \
  && pecl install imagick \
  && docker-php-ext-install zip pdo_mysql mysqli mbstring gd \
  && docker-php-ext-enable imagick \
- && a2enmod rewrite
+ && a2enmod rewrite \
+ && sed -i -e 's/domain="coder" rights="none" pattern="PDF"/domain="coder" rights="read|write" pattern="PDF"/g' /etc/ImageMagick-6/policy.xml
