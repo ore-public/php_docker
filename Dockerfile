@@ -1,4 +1,4 @@
-FROM node:16 as node
+FROM node:18 as node
 FROM php:8.0-apache
 
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
