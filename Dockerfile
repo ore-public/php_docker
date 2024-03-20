@@ -1,4 +1,4 @@
-FROM node:16 as node
+FROM node:18 as node
 FROM php:8.1-apache
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -19,7 +19,7 @@ RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
 RUN apt-get update \
  && apt-get -y install libzip-dev libonig-dev libpng-dev imagemagick libmagick++-dev fonts-ipafont \
  && pecl install imagick \
- && docker-php-ext-install zip pdo_mysql mysqli mbstring gd \
+ && docker-php-ext-install zip pdo_mysql mysqli mbstring gd bcmath\
  && docker-php-ext-enable imagick \
  && a2enmod rewrite \
  && sed -i -e 's/domain="coder" rights="none" pattern="PDF"/domain="coder" rights="read|write" pattern="PDF"/g' /etc/ImageMagick-6/policy.xml
