@@ -1,7 +1,7 @@
-FROM node:16 as node
+FROM node:18 as node
 FROM php:8.0-apache
 
-COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 COPY ./php.ini "$PHP_INI_DIR/php.ini"
 
 ENV YARN_VERSION 1.22.19
