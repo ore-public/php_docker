@@ -17,9 +17,9 @@ RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
   && npm install -g npm
 
 RUN apt-get update \
- && apt-get -y install libzip-dev libonig-dev libpng-dev imagemagick libmagick++-dev fonts-ipafont geoip-bin libgeoip-dev\
- && pecl install imagick \
+ && apt-get -y install libzip-dev libonig-dev libpng-dev imagemagick libmagick++-dev fonts-ipafont geoip-bin libgeoip-dev libssh2-1 libssh2-1-dev\
+ && pecl install imagick ssh2\
  && docker-php-ext-install zip pdo_mysql mysqli mbstring gd bcmath\
- && docker-php-ext-enable imagick \
+ && docker-php-ext-enable imagick ssh2\
  && a2enmod rewrite \
  && sed -i -e 's/domain="coder" rights="none" pattern="PDF"/domain="coder" rights="read|write" pattern="PDF"/g' /etc/ImageMagick-6/policy.xml
